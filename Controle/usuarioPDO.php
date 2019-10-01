@@ -26,7 +26,7 @@ class UsuarioPDO{
             $senhamd5 = md5($_POST['senha1']);
             $con = new conexao();
             $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :senha , :administrador);' );
+            $stmt = $pdo->prepare('insert into Usuario values(default , :nome , :email , :senha , :administrador , 0);' );
 
             $stmt->bindValue(':nome', $usuario->getNome());    
         
@@ -48,7 +48,24 @@ class UsuarioPDO{
     /*inserir*/
                 
                 
-    
+    function insertParametros(usuario $usuario){
+        if($_POST['senha1'] == $_POST['senha2']){
+            $senhamd5 = md5($_POST['senha1']);
+            $con = new conexao();
+            $pdo = $con->getConexao();
+            $stmt = $pdo->prepare('insert into usuario values(default , :nome , :email , :senha , 0 ,0);' );
+            $stmt->bindValue(':nome', $usuario->getNome());    
+            $stmt->bindValue(':email', $usuario->getEmail());    
+            $stmt->bindValue(':senha', $senhamd5);    
+            if($stmt->execute()){ 
+                return $pdo->lastInsertId("id_usuario");
+            }else{
+                return 'usuarioErroInsert';
+            }
+        } else{
+            return "senha";   
+        }
+    }
 
             
 

@@ -17,16 +17,27 @@
                         <h4 class="textoCorPadrao2">Cadastrar Curso</h4>
                         <div class="input-field col s6">
                             <input type="text" name="nome">
-                            <label>nome</label>
+                            <label>Nome</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="turno">
-                            <label>turno</label>
+                            <select name="turno">
+                                <option value="Integral">Integral</option>
+                                <option value="Diurno">Diurno</option>
+                                <option value="Matutino">Matutino</option>
+                                <option value="Vespertino">Vespertino</option>
+                                <option value="Noturno">Noturno</option>
+                            </select>
+                            <label>Turno</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="nivel">
-                            <label>nivel</label>
+                            <select name="nivel">
+                                <option value="Médio">Médio</option>
+                                <option value="Subsequente">Subsequente</option>
+                                <option value='Superior'>Superior</option>
+                            </select>
+                            <label>Nível</label>
                         </div>
+                    </div>
                     <div class="row center">
                         <a href="../index.php" class="corPadrao3 btn">Voltar</a>
                         <input type="submit" class="btn corPadrao2" value="Cadastrar">
@@ -34,6 +45,9 @@
                 </form>
             </div>
         </main>
+        <script>
+            $("select").formSelect();
+        </script>
         <?php
         include_once '../Base/footer.php';
         ?>

@@ -1,19 +1,19 @@
-<?php 
+<?php
 
-class encaminhamento{
+class encaminhamento {
 
-private $id_encaminhamento;
-private $id_aluno;
-private $id_servidor;
-private $gravidade;
-private $observacao;
-private $tipo_encaminhamento;
+    private $id_encaminhamento;
+    private $id_aluno;
+    private $id_servidor;
+    private $gravidade;
+    private $observacao;
+    private $tipo_encaminhamento;
+    private $data;
 
-
-public function __construct() {
-    if (func_num_args() != 0) {
-        $atributos = func_get_args()[0];
-        foreach ($atributos as $atributo => $valor) {
+    public function __construct() {
+        if (func_num_args() != 0) {
+            $atributos = func_get_args()[0];
+            foreach ($atributos as $atributo => $valor) {
                 if (isset($valor)) {
                     $this->$atributo = $valor;
                 }
@@ -29,52 +29,60 @@ public function __construct() {
         }
     }
 
-     public function getId_encaminhamento(){
-         return $this->id_encaminhamento;
-     }
+    function getData() {
+        return $this->data;
+    }
 
-     function setId_encaminhamento($id_encaminhamento){
-          $this->id_encaminhamento = $id_encaminhamento;
-     }
+    function setData($data) {
+        $this->data = $data;
+    }
 
-     public function getId_aluno(){
-         return $this->id_aluno;
-     }
+    public function getId_encaminhamento() {
+        return $this->id_encaminhamento;
+    }
 
-     function setId_aluno($id_aluno){
-          $this->id_aluno = $id_aluno;
-     }
+    function setId_encaminhamento($id_encaminhamento) {
+        $this->id_encaminhamento = $id_encaminhamento;
+    }
 
-     public function getId_servidor(){
-         return $this->id_servidor;
-     }
+    public function getId_aluno() {
+        return $this->id_aluno;
+    }
 
-     function setId_servidor($id_servidor){
-          $this->id_servidor = $id_servidor;
-     }
+    function setId_aluno($id_aluno) {
+        $this->id_aluno = $id_aluno;
+    }
 
-     public function getGravidade(){
-         return $this->gravidade;
-     }
+    public function getId_servidor() {
+        return $this->id_servidor;
+    }
 
-     function setGravidade($gravidade){
-          $this->gravidade = $gravidade;
-     }
+    function setId_servidor($id_servidor) {
+        $this->id_servidor = $id_servidor;
+    }
 
-     public function getObservacao(){
-         return $this->observacao;
-     }
+    public function getGravidade() {
+        return $this->gravidade;
+    }
 
-     function setObservacao($observacao){
-          $this->observacao = $observacao;
-     }
+    function setGravidade($gravidade) {
+        $this->gravidade = $gravidade;
+    }
 
-     public function getTipo_encaminhamento(){
-         return $this->tipo_encaminhamento;
-     }
+    public function getObservacao() {
+        return $this->observacao;
+    }
 
-     function setTipo_encaminhamento($tipo_encaminhamento){
-          $this->tipo_encaminhamento = $tipo_encaminhamento;
-     }
+    function setObservacao($observacao) {
+        $this->observacao = $observacao;
+    }
+
+    public function getTipo_encaminhamento() {
+        return $this->tipo_encaminhamento;
+    }
+
+    function setTipo_encaminhamento($tipo_encaminhamento) {
+        $this->tipo_encaminhamento = $tipo_encaminhamento;
+    }
 
 }

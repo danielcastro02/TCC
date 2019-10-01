@@ -2,11 +2,12 @@
 
 class usuario{
 
-private $id_usuario;
-private $nome;
-private $email;
-private $senha;
-private $administrador;
+protected $id_usuario;
+protected $nome;
+protected $email;
+protected $senha;
+protected $administrador;
+protected $confirmado;
 
 
 public function __construct() {
@@ -28,7 +29,16 @@ public function __construct() {
         }
     }
 
-     public function getId_usuario(){
+    
+    function getConfirmado() {
+        return $this->confirmado;
+    }
+
+    function setConfirmado($confirmado) {
+        $this->confirmado = $confirmado;
+    }
+
+         public function getId_usuario(){
          return $this->id_usuario;
      }
 

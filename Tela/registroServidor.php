@@ -16,9 +16,26 @@
                     <div class="row center">
                         <h4 class="textoCorPadrao2">Cadastrar Servidor</h4>
                         <div class="input-field col s6">
-                            <input type="text" name="siape">
-                            <label>siape</label>
+                            <input type="text" name="nome">
+                            <label>Nome</label>
                         </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="email">
+                            <label>E-mail</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="siape">
+                            <label>Siape</label>
+                        </div>
+                        <div class = "input-field col s6">
+                            <input type="password" name="senha1">
+                            <label>Senha</label>
+                        </div>
+                        <div class = "input-field col s6">
+                            <input type="password" name="senha2">
+                            <label>Repita a senha</label>
+                        </div>
+                    </div>
                     <div class="row center">
                         <a href="../index.php" class="corPadrao3 btn">Voltar</a>
                         <input type="submit" class="btn corPadrao2" value="Cadastrar">
