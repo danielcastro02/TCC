@@ -5,7 +5,6 @@ class encaminhamento {
     private $id_encaminhamento;
     private $id_aluno;
     private $id_servidor;
-    private $gravidade;
     private $observacao;
     private $tipo_encaminhamento;
     private $data;
@@ -59,14 +58,6 @@ class encaminhamento {
 
     function setId_servidor($id_servidor) {
         $this->id_servidor = $id_servidor;
-    }
-
-    public function getGravidade() {
-        return $this->gravidade;
-    }
-
-    function setGravidade($gravidade) {
-        $this->gravidade = $gravidade;
     }
 
     public function getObservacao() {

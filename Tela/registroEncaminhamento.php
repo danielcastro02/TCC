@@ -25,10 +25,6 @@
                             </select>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="gravidade">
-                            <label>gravidade</label>
-                        </div>
-                        <div class="input-field col s6">
                             <textarea name="observacao" class="materialize-textarea"></textarea>
                             <label>Observações</label>
                         </div>

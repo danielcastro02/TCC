@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Out-2019 às 12:49
--- Versão do servidor: 10.4.6-MariaDB
--- versão do PHP: 7.3.8
+-- Tempo de geração: 29-Out-2019 às 15:24
+-- Versão do servidor: 10.3.16-MariaDB
+-- versão do PHP: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -84,7 +84,6 @@ CREATE TABLE `encaminhamento` (
   `id_encaminhamento` int(11) NOT NULL,
   `id_aluno` int(11) NOT NULL,
   `id_servidor` int(11) NOT NULL,
-  `gravidade` varchar(50) NOT NULL,
   `observacao` varchar(500) DEFAULT NULL,
   `tipo_encaminhamento` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
