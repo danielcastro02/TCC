@@ -14,14 +14,17 @@
             <div class="row" style="margin-top: 10vh;">
                 <form action="../Controle/tentativaresolucaoControle.php?function=inserirTentativaresolucao" class="card col l8 offset-l2 m10 offset-m1 s10 offset-s1" method="post">
                     <div class="row center">
-                        <h4 class="textoCorPadrao2">Cadastrar Tentativaresolucao</h4>
+                        <h4 class="textoCorPadrao2">Cadastrar Tentativa</h4>
                         <div class="input-field col s6">
                             <input type="text" name="tentativa_resolucao">
-                            <label>tentativa_resolucao</label>
+                            <label>Tentativa</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="tipo_encaminhamento">
-                            <label>tipo_encaminhamento</label>
+                            <select name="tipo_encaminhamento">
+                                <option value="Disciplinar">Disciplinar</option>
+                                <option value="Aproveitamento">Aproveitamento</option>
+                            </select>
+                            <label>Tipo de encaminhamento</label>
                         </div>
                     <div class="row center">
                         <a href="../index.php" class="corPadrao3 btn">Voltar</a>
@@ -29,6 +32,11 @@
                     </div>
                 </form>
             </div>
+            <script>
+                $(document).ready(function () {
+                    $("select").formSelect();
+                });
+            </script>
         </main>
         <?php
         include_once '../Base/footer.php';

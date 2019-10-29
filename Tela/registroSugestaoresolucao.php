@@ -14,21 +14,30 @@
             <div class="row" style="margin-top: 10vh;">
                 <form action="../Controle/sugestaoresolucaoControle.php?function=inserirSugestaoresolucao" class="card col l8 offset-l2 m10 offset-m1 s10 offset-s1" method="post">
                     <div class="row center">
-                        <h4 class="textoCorPadrao2">Cadastrar Sugestaoresolucao</h4>
+                        <h4 class="textoCorPadrao2">Cadastrar Sugestao para resolucao</h4>
                         <div class="input-field col s6">
                             <input type="text" name="sugestao_resolucao">
-                            <label>sugestao_resolucao</label>
+                            <label>Sugestão</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="tipo_encaminhamento">
-                            <label>tipo_encaminhamento</label>
+                            <select name="tipo_encaminhamento">
+                            <option value="Disciplinar">Disciplinar</option>
+                            <option value="Aproveitamento">Aproveitamento</option>
+                            </select>
+                            <label>Tipo de encaminhamento</label>
                         </div>
+                    </div>
                     <div class="row center">
                         <a href="../index.php" class="corPadrao3 btn">Voltar</a>
                         <input type="submit" class="btn corPadrao2" value="Cadastrar">
                     </div>
                 </form>
             </div>
+            <script>
+                $(document).ready(function () {
+                    $("select").formSelect();
+                });
+            </script>
         </main>
         <?php
         include_once '../Base/footer.php';

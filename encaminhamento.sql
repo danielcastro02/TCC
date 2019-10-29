@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Out-2019 às 13:31
+-- Tempo de geração: 29-Out-2019 às 12:49
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.8
 
@@ -35,6 +35,13 @@ CREATE TABLE `aluno` (
   `id_curso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `aluno`
+--
+
+INSERT INTO `aluno` (`id_usuario`, `matricula`, `apelido`, `id_curso`) VALUES
+(1, '2017007243', 'Daniel', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +67,13 @@ CREATE TABLE `curso` (
   `nivel` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `nome`, `turno`, `nivel`) VALUES
+(1, 'Analise e Desenvolvimento de Sistemas', 'Vespertino', 'Superior');
+
 -- --------------------------------------------------------
 
 --
@@ -73,7 +87,8 @@ CREATE TABLE `encaminhamento` (
   `gravidade` varchar(50) NOT NULL,
   `observacao` varchar(500) DEFAULT NULL,
   `tipo_encaminhamento` varchar(50) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL
+  `status` varchar(50) DEFAULT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -185,8 +200,16 @@ CREATE TABLE `usuario` (
   `nome` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `senha` varchar(150) NOT NULL,
-  `administrador` int(1) DEFAULT 0
+  `administrador` int(1) DEFAULT 0,
+  `confirmado` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `administrador`, `confirmado`) VALUES
+(1, 'Daniel Zanini de Castro', 'zanini.castro@hotmail.com', '202cb962ac59075b964b07152d234b70', 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -298,7 +321,7 @@ ALTER TABLE `codigoconfirmacao`
 -- AUTO_INCREMENT de tabela `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `encaminhamento`
@@ -352,7 +375,7 @@ ALTER TABLE `tentavivarefenc`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para despejos de tabelas

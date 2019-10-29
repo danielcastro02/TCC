@@ -52,6 +52,20 @@ class AlunoPDO {
         }
     }
 
+    function selectPesquisa($pesquisa){
+        $con = new conexao();
+        $pdo = $con->getConexao();
+        $stmt = $pdo->prepare('select u.* , a.* from aluno as a inner join usuario as u on u.id_usuario = a.id_usuario where u.nome like "%:pesquisa%" or a.matricula like "%:matricula%";');
+        $stmt->bindValue(":pesquisa" , $pesquisa);
+        $stmt->bindValue(":matricula" , $pesquisa);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt;
+        } else {
+            return false;
+        }
+    }
+
     public function selectAlunoId_usuario($id_usuario) {
 
         $con = new conexao();
