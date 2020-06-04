@@ -1,149 +1,55 @@
 <?php
+    include_once __DIR__.'/../Controle/conexao.php';
+    include_once __DIR__.'/../Controle/usuarioPDO.php';
+    include_once __DIR__.'/../Modelo/Usuario.php';
 
-if (realpath('./index.php')) {
-    include_once './Controle/conexao.php';
-    include_once './Modelo/Codigoconfirmacao.php';
-} else {
-    if (realpath('../index.php')) {
-        include_once '../Controle/conexao.php';
-        include_once '../Modelo/Codigoconfirmacao.php';
-    } else {
-        if (realpath('../../index.php')) {
-            include_once '../../Controle/conexao.php';
-            include_once '../../Modelo/Codigoconfirmacao.php';
-        }
-    }
-}
-
-
-class CodigoconfirmacaoPDO{
-    
-             
-             /*inserir*/
-    function inserirCodigoconfirmacao() {
-        $codigoconfirmacao = new codigoconfirmacao($_POST);
-            $con = new conexao();
-            $pdo = $con->getConexao();
-            $stmt = $pdo->prepare('insert into Codigoconfirmacao values(default , :id_usuario , :codigo);' );
-
-            $stmt->bindValue(':id_usuario', $codigoconfirmacao->getId_usuario());    
-        
-            $stmt->bindValue(':codigo', $codigoconfirmacao->getCodigo());    
-        
-            if($stmt->execute()){ 
-                header('location: ../index.php?msg=codigoconfirmacaoInserido');
-            }else{
-                header('location: ../index.php?msg=codigoconfirmacaoErroInsert');
+    class codigoConfirmacaoPDO
+    {
+        function verificaCodigoCompleta($codigo)
+        {
+            $pdo = conexao::getConexao();
+            $stmt = $pdo->prepare("Select id_usuario from codigoconfirmacao where codigo = :codigo and tipo = 'completa';");
+            $stmt->bindValue(":codigo", $codigo);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $this->deletar();
+                return $stmt->fetch()['id_usuario'];
+            } else {
+                $this->deletar();
+                return false;
             }
-    }
-    /*inserir*/
-                
-                
-    
-
-            
-
-    public function selectCodigoconfirmacao(){
-            
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from codigoconfirmacao ;');
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            return $stmt;
-        } else {
-            return false;
         }
-    }
-    
 
-                    
-    public function selectCodigoconfirmacaoId_codigo($id_codigo){
-            
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from codigoconfirmacao where id_codigo = :id_codigo;');
-        $stmt->bindValue(':id_codigo', $id_codigo);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            return $stmt;
-        } else {
-            return false;
-        }
-    }
-    
-
-                    
-    public function selectCodigoconfirmacaoId_usuario($id_usuario){
-            
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from codigoconfirmacao where id_usuario = :id_usuario;');
-        $stmt->bindValue(':id_usuario', $id_usuario);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            return $stmt;
-        } else {
-            return false;
-        }
-    }
-    
-
-                    
-    public function selectCodigoconfirmacaoCodigo($codigo){
-            
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('select * from codigoconfirmacao where codigo = :codigo;');
-        $stmt->bindValue(':codigo', $codigo);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            return $stmt;
-        } else {
-            return false;
-        }
-    }
-    
- 
-    public function updateCodigoconfirmacao(Codigoconfirmacao $codigoconfirmacao){        
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('update codigoconfirmacao set id_usuario = :id_usuario , codigo = :codigo where id_codigo = :id_codigo;');
-        $stmt->bindValue(':id_usuario', $codigoconfirmacao->getId_usuario());
-        
-        $stmt->bindValue(':codigo', $codigoconfirmacao->getCodigo());
-        
-        $stmt->bindValue(':id_codigo', $codigoconfirmacao->getId_codigo());
-        $stmt->execute();
-        return $stmt->rowCount();
-    }            
-    
-    public function deleteCodigoconfirmacao($definir){
-        $con = new conexao();
-        $pdo = $con->getConexao();
-        $stmt = $pdo->prepare('delete from codigoconfirmacao where id_codigo = :definir ;');
-        $stmt->bindValue(':definir', $definir);
-        $stmt->execute();
-        return $stmt->rowCount();
-    }
-    
-    public function deletar(){
-        $this->deleteCodigoconfirmacao($_GET['id']);
-        header('location: ../Tela/listarCodigoconfirmacao.php');
-    }
-
-
-
-            /*editar*/
-            function editar() {
-                $codigoconfirmacao = new Codigoconfirmacao($_POST);
-                    if($this->updateCodigoconfirmacao($codigoconfirmacao) > 0){
-                        header('location: ../index.php?msg=codigoconfirmacaoAlterado');
-                    } else {
-                        header('location: ../index.php?msg=codigoconfirmacaoErroAlterar');
-                    }
+        function verificaCodigoRecuperaSenha($codigo, $email)
+        {
+            $usuarioPDO = new UsuarioPDO();
+            $usuario = new usuario($usuarioPDO->selectUsuarioEmail($email)->fetch());
+            $pdo = conexao::getConexao();
+            $stmt = $pdo->prepare("Select id_usuario from codigoconfirmacao where codigo = :codigo and tipo = 'recuperaSenha' and id_usuario = :id_usuario;");
+            $stmt->bindValue(":codigo", $codigo);
+            $stmt->bindValue(":id_usuario", $usuario->getId_usuario());
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                $this->deletarRecuperaSenha($usuario->getId_usuario());
+                return $stmt->fetch()['id_usuario'];
+            } else {
+                $this->deletarRecuperaSenha($usuario->getId_usuario());
+                return false;
             }
-            /*editar*/
-            /*chave*/
-            }
-                
+        }
+
+        function deletar()
+        {
+            $pdo = conexao::getConexao();
+            $stmt = $pdo->prepare("delete from codigoconfirmacao where tipo = 'completa'");
+            $stmt->execute();
+        }
+
+        function deletarRecuperaSenha($codigo)
+        {
+            $pdo = conexao::getConexao();
+            $stmt = $pdo->prepare("delete from codigoconfirmacao where id_usuario = :codigo");
+            $stmt->bindValue(":codigo", $codigo);
+            $stmt->execute();
+        }
+    }
