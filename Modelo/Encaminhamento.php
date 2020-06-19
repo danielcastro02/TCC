@@ -6,6 +6,9 @@ class encaminhamento {
     private $id_aluno;
     private $id_servidor;
     private $observacao;
+    private $tentativa_resolucao;
+    private $sugestao_resolucao;
+    private $data_ocorrencia;
     private $tipo_encaminhamento;
     private $data;
 
@@ -75,5 +78,36 @@ class encaminhamento {
     function setTipo_encaminhamento($tipo_encaminhamento) {
         $this->tipo_encaminhamento = $tipo_encaminhamento;
     }
+
+    public function getTentativaResolucao()
+    {
+        return $this->tentativa_resolucao;
+    }
+
+    public function setTentativaResolucao($tentativa_resolucao)
+    {
+        $this->tentativa_resolucao = $tentativa_resolucao;
+    }
+
+    public function getSugestaoResolucao()
+    {
+        return $this->sugestao_resolucao;
+    }
+
+    public function setSugestaoResolucao($sugestao_resolucao)
+    {
+        $this->sugestao_resolucao = $sugestao_resolucao;
+    }
+
+    public function getDataOcorrencia()
+    {
+        return $this->data_ocorrencia;
+    }
+
+    public function setDataOcorrencia($data_ocorrencia)
+    {
+        $this->data_ocorrencia = $data_ocorrencia;
+    }
+
 
 }

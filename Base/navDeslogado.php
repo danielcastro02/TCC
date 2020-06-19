@@ -17,15 +17,6 @@ $url = $_SERVER['REQUEST_URI'];
 
 require_once $pontos . 'vendor/autoload.php'; // change path as needed
 include_once $pontos . 'Modelo/Parametros.php';
-$fb = new Facebook\Facebook([
-    'app_id' => $parametros->getFace_app_id(),
-    'app_secret' => $parametros->getFace_app_secret(),
-    'default_graph_version' => 'v2.10',
-        ]);
-$helper = $fb->getRedirectLoginHelper();
-
-$permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl($parametros->getServer() . '/Controle/facebookRest.php', $permissions);
 ?>
 
 <nav class="nav-extended white" style="position: relative;">
@@ -43,27 +34,6 @@ $loginUrl = $helper->getLoginUrl($parametros->getServer() . '/Controle/facebookR
         <?php } ?>
 
         <ul class="right">
-            <li>
-                <a href="<?php echo $loginUrl; ?>" >
-                    <div class="chip detalheSuave white-text" style=" background-color: #1689e0">
-                        <div class="left-align" style="background-color: white; background-image: url('<?php echo $pontos . "Img/Icones/faceIcon.svg" . '?' . $numeruzinho; ?>'); 
-                             float: left;
-                             margin: 0 8px 0 -12px;
-                             border-radius: 50%;
-                             height: 32px; width: 32px;
-                             background-position: center;
-                             background-size: cover;
-                             background-position: center;
-                             background-repeat: no-repeat;
-                             object-fit: cover;
-                             object-position: center;
-                             ">
-                        </div>
-                        Entrar
-                    </div>
-                <!--<img class="responsive-img pulse-button" src="<?php //echo $pontos . "Img/Icones/faceIcon.svg" . '?' . $numeruzinho;     ?>" style="margin-top: 17px;max-height: 30px; height:auto; width: auto; margin-left: 5px;">-->
-                </a>
-            </li>
             <li>
                 <a class="black-text modal-trigger" href="#modalLogin">
                     <div class="chip detalheSuave">

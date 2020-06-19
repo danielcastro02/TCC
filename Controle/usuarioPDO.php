@@ -6,7 +6,6 @@ if (!isset($_SESSION)) {
 
 include_once __DIR__ . '/../Controle/conexao.php';
 include_once __DIR__ . '/../Controle/emailPDO.php';
-include_once __DIR__ . '/../Controle/conversorImagem.php';
 include_once __DIR__ . '/../Controle/codigoConfirmacaoPDO.php';
 include_once __DIR__ . '/../Controle/notificacaoPDO.php';
 include_once __DIR__ . '/../Controle/PDOBase.php';

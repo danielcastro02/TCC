@@ -69,7 +69,7 @@ $logado = new usuario(unserialize($_SESSION['logado']));
                         </div>
                     </a>
                 </li>
-                <li><a href="<?php echo $pontos ?>Tela/meusCursos.php"  class="black-text modal-trigger"><div class="chip detalheSuave">Meus Cursos</div></a></li>
+                <li><a href="<?php echo $pontos ?>Tela/meusEncaminhamentos.php"  class="black-text modal-trigger"><div class="chip detalheSuave">Encaminhamentos</div></a></li>
 
                 <li>
                     <a class="btSair black-text" href="<?php echo $pontos; ?>Controle/usuarioControle.php?function=logout&url=<?php echo $_SERVER["REQUEST_URI"]; ?>" class="black-text">

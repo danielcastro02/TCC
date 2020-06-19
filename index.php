@@ -9,7 +9,7 @@
         ?>
     <body class="homeimg">
         <?php
-        include_once './Base/navBar.php';
+        include_once './Base/inav.php';
         ?>
         <main>
            

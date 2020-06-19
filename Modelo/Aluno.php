@@ -1,9 +1,8 @@
 <?php
 
-include_once __DIR__ . "/Usuario.php";
 
-class aluno extends usuario {
-
+class aluno{
+    private $id_aluno;
     private $matricula;
     private $apelido;
     private $id_curso;
@@ -27,12 +26,14 @@ class aluno extends usuario {
         }
     }
 
-    public function getId_usuario() {
-        return $this->id_usuario;
+    public function getIdAluno()
+    {
+        return $this->id_aluno;
     }
 
-    function setId_usuario($id_usuario) {
-        $this->id_usuario = $id_usuario;
+    public function setIdAluno($id_aluno)
+    {
+        $this->id_aluno = $id_aluno;
     }
 
     public function getMatricula() {
